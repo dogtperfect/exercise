@@ -1,6 +1,7 @@
 package numberandstring;
 
 public class typebox {
+	public static boolean found = false;
 	
 	public static char[] genRan() {
 		char[] gr= new char[5];
@@ -38,9 +39,93 @@ public class typebox {
 	}
 	
 	
-	public static void pojie() {
-		char[] passwd = genRan();
+	public static void poJieFor() {
+		String passwd = randomString(3);
+		//String passwd = "002" ;
+		System.out.println("密码是： "+passwd);
+		char [] gue = new char[3];
+		String guess = "";
 		
+
+		for(short i ='0'; i <='z'; i++) {
+			if (!Character.isLetterOrDigit((char)i) ){
+				continue;
+			}
+			for (short j = '0'; j<='z'; j++) {
+				if (!Character.isLetterOrDigit((char)j) ){
+					continue;
+				}
+				for(short k='0'; k<='z'; k++) {
+					if (!Character.isLetterOrDigit((char)k) ){
+						continue;
+					}
+					//这样判断，效率很低
+//					if(!isLetterOrDigit(i,j,k)) {
+//						continue;
+//					}
+//					guess = (char)i + (char)j + (char)k;
+					guess = new String( new char[] {(char)i, (char)j, (char)k});
+					if(passwd.equals(guess)) {
+						System.out.println("破解成功，密码是： "+ guess);
+						return;
+					}
+				}
+			}
+		}
+
+	}
+	
+//	public static boolean isLetterOrDigit(short i,short j,short k) {
+//		return ( Character.isLetterOrDigit((char)i) && Character.isLetterOrDigit((char)j) && Character.isLetterOrDigit((char)k) );
+//	}
+	
+	public static void poJieRecursion () {
+		String password = randomString(3);
+		System.out.println("pass is "+ password);
+		char[] guessPassword = new  char [password.length()];
+		generatePassword(guessPassword, password);
+	}
+	
+	public static String randomString(int length) {
+		String pool = "";
+		String result ="";
+		for (short i='0';i<='9';i++) {
+			pool+=(char)i;
+		}
+		for (short i='a';i<='z';i++) {
+			pool+=(char)i;
+		}
+		for (short i='A';i<='Z';i++) {
+			pool+=(char)i;
+		}
+//		System.out.println(pool);
+		for(int i=0; i<length; i++) {
+			result+=pool.charAt( (int) ( Math.random()*(pool.length()) ) );
+		}
+//		System.out.println(result);
+		return result;
+	}
+	
+	public static void generatePassword(char[] guessPassword, String password) {
+		generatePassword(guessPassword, 0 , password);
+	}
+
+	public static void generatePassword(char[] guessPassword, int index, String password) {
+		if(found) return;
+		for (short i='0'; i <='z'; i++){
+			char c = (char)i;
+			if(!Character.isLetterOrDigit(c)) continue;
+			guessPassword[index] = c;
+			if(index!=guessPassword.length-1) {
+				generatePassword(guessPassword, index+1, password);
+			}
+			else {
+				String guess = new String(guessPassword);
+				if (guess.equals(password)){
+					System.out.println("success! password is "+ guess);
+				}
+			}
+		}
 	}
 	
 	public static void main(String[] args) {
@@ -101,10 +186,18 @@ public class typebox {
 //		String jg = String.format(jzFormat, sp,wp,list2);
 //		System.out.println(jg);
 //		System.out.println(jg.length());
+//		String str2 = "abc";
+//		String str1 = "abc";
+//		System.out.println(str1.equals(str2));
+//		System.out.println(genRan());
+//		System.out.println(genRan2());
+//		System.out.println(Math.round(7.4));
+//
+//		System.out.println(randomString(6));
+//		poJieFor();
+		poJieRecursion();
 		
-		System.out.println(genRan());
-		System.out.println(genRan2());
-		System.out.println(Math.round(7.4));
+
 		
 		
 		
