@@ -104,7 +104,7 @@ public class typebox {
 		
 		System.out.println(genRan());
 		System.out.println(genRan2());
-		
+		System.out.println(Math.round(7.4));
 		
 		
 		
