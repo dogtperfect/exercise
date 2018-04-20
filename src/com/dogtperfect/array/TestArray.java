@@ -79,6 +79,31 @@ public class TestArray {
 		System.out.println(Arrays.toString(a));
 	}
 	
+	public static void sortTwoDimensionArray() {
+		int [][]a = new int [3][4];
+		for(int i =0; i<a.length;i++) {
+			for (int j=0 ;j<a[i].length; j++) {
+				a[i][j] = (int)(Math.random() * 100);
+			}
+		}
+		System.out.println("output two dimension array:");
+		for(int[] i : a) {
+			System.out.println(Arrays.toString(i));
+		}
+		int [] b = new int [a.length* a[0].length];
+		for (int i=0; i< a.length; i++) {
+			System.arraycopy(a[i], 0, b, a[i].length*i, a[i].length);
+		}
+		Arrays.sort(b);
+		for(int i =0;i<a.length; i++) {
+			System.arraycopy(b, i*a[i].length, a[i], 0, a[i].length);
+		}
+		System.out.println("after sort: ");
+		for(int[] i : a) {
+			System.out.println(Arrays.toString(i));
+		}
+	}
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 //		int [] a = new int[] {2,4,1,5,3};
@@ -87,7 +112,8 @@ public class TestArray {
 //		System.out.println(reverse(a));
 //		copyArray();
 //		twoDimensionArray();	
-		testArrays ();
+//		testArrays ();
+		sortTwoDimensionArray();
 	}
 
 }
