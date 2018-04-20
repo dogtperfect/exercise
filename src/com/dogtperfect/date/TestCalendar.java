@@ -4,8 +4,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
-
 public class TestCalendar {
 	
 	public static void testDateFormat() {
@@ -43,8 +41,8 @@ public class TestCalendar {
 			long start = startY.getTime();
 			long end = endY.getTime();
 			System.out.println();
-			System.out.println(startY);
-			System.out.println(endY);
+			System.out.println("startY: "+startY);
+			System.out.println("endY: "+endY);
 			System.out.println();
 			for (int i=0; i< dateArray.length; i++) {
 		    	long s=(long)((Math.random())*(end-start));
