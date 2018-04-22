@@ -19,11 +19,14 @@ public class TestCode {
 		}
 	}
 	
+	// 从String 中识别， 因为涉及到中文。 
 	public static void showCode(String str, String encode) {
 		try {
 			System.out.printf("Undering %s encode, character \"%s\" \' hex code is: %n",encode,str);
 		
 			// 得到 utf-8 编码后的byte[], 也就是写入磁盘的01
+			// 如果纯英文， 好像没由 byte[] -> String 的方法. 什么情况下需要byte[] -> String
+//			byte[] bs = Character.
 			byte[] bs = str.getBytes(encode);
 			
 // utf-8编码的unicode -> new String(byte[], "utf-8") -> 解码出unicode
@@ -46,6 +49,7 @@ public class TestCode {
 		}		
 	}
 	
+	//从文件中识别
 	public static void setCharset() {
 		File f = new File("c:/lianxi/tt.txt");
 		
@@ -57,6 +61,8 @@ public class TestCode {
 			
 			isr.read(cs);
 			System.out.println("utf-8 编码方式识别出的字符是 ： ");
+			//纯英文不需要指定utf-8 编码
+			// 还由一种方法 String.valueOf(cs)
 			System.out.println(new String(cs));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
