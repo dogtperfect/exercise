@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+// BufferReader BufferWriter 是一个碗, 盛饭
 public class testBuffer {
 	public static void bufferReaderIsChars() {
 		File f = new File("c:/lianxi/tt.txt");
@@ -49,7 +50,7 @@ public class testBuffer {
 			BufferedWriter bw = new BufferedWriter(fw);
 			bw.write("bw green\r\n");
 			bw.write("bw red");
-// BufferedWriter 需要flush , 才能写入文件
+// BufferedWriter 需要flush , 才能写入文件,否则需要等buffer满
 //			bw.flush();
 			bw.write("bw blue");
 		} catch (IOException e ) {

@@ -13,6 +13,7 @@ public class TestDataStream {
 		File f = new File("c:/lianxi/dis.txt");
 		try( 
 				FileInputStream fis = new FileInputStream(f);
+// DataInputStream 用于读取 原始数据类型  int float long ...				
 				DataInputStream dis = new DataInputStream(fis);
 		){
 			boolean b = dis.readBoolean();
@@ -45,6 +46,8 @@ public class TestDataStream {
 	}
 	
 	public static void readWrite() {
+// try块变量的作用域, 和普通块一样
+//try块前, 声明赋值
 		int x = 1;
 		int y = 2 ;
 		File f = new File("c:/lianxi/xx.txt");
@@ -56,12 +59,16 @@ public class TestDataStream {
 		){
 			dos.writeInt(x);
 			dos.writeInt(y);
+//try块中, 修改
+			//DataOutputStream 可以连续读, 不用分隔符. BufferedReader需要分隔符
 			x = dis.readInt();
 			y = dis.readInt();
 			System.out.printf("使用数据流读取出的x是 %d y是 %d%n",x,y);
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
+//try块后, 打印修改后的值
+		System.out.printf("Out of try, x is %d, y is %d %n", x,y);
 		
 	}
 	

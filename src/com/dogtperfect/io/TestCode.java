@@ -19,18 +19,18 @@ public class TestCode {
 			showCode(str,encode);
 		}
 	}
-	// java 中字符编码都是 unicode, 对unicode 压缩的编码有: utf-8, utf-16, gbk
-	// 从String 中识别， 因为涉及到中文。 
+// java 中字符编码都是 unicode, 对unicode 压缩的编码有: utf-8, utf-16, gbk
+// 从String 中识别， 因为涉及到中文。 
 	public static void showCode(String str, String encode) {
 		try {
 			System.out.printf("Undering %s encode, character \"%s\" \' hex code is: %n",encode,str);
 		
-			// 得到 utf-8 编码后的byte[], 也就是写入磁盘的01
-			// 纯英文一样，由 byte[] -> String: String str = new String(bytes, "UTF-8"); 
-			// String -> byte[]
+// 得到 utf-8 编码后的byte[], 也就是写入磁盘的01
+// 纯英文一样，由 byte[] -> String: String str = new String(byte[], "UTF-8"); 
+// String -> byte[]
 			byte[] bs = str.getBytes(encode);
 //经过utf-8 编码后的 byte[] -> new String(byte[], "utf-8") -> 解码出unicode
-			//解码unicode是应用程序自动完成
+//解码unicode是应用程序自动完成
 			String gbk = new String(bs, "GBK");
 			System.out.println("parse GBK byte array: "+ gbk);
 			String utf8 = new String(bs, "UTF-8");
@@ -49,7 +49,7 @@ public class TestCode {
 		}		
 	}
 	
-	//从文件中识别
+//从文件中识别
 	public static void setCharset() {
 		File f = new File("c:/lianxi/tt.txt");
 		
