@@ -7,6 +7,8 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 
 public class IoPractice {
 
@@ -75,19 +77,66 @@ public class IoPractice {
 		File[] files = s.listFiles();
 		for(File f : files) {
 			if(f.isFile()) {
+				//d 是文件夹, getName() 得到文件夹或文件的名字
 				File newFile = new File(d,f.getName());
 				copyFile(f.getAbsolutePath(),newFile.getAbsolutePath());
 			}
 			if(f.isDirectory()) {
-				File newDir = new File()
+				File destDir = new File(d, f.getName());
+				copyDir(f.getAbsolutePath(),destDir.getAbsolutePath());
 			}
 		}
 		
 	}
 	
+	public static void search(File f, String s) {
+		if(f.isFile()) {
+			if(f.getName().toLowerCase().endsWith(".java")) {
+				String fileContent = readFile(f);
+				if(fileContent.contains(s)) {
+					System.out.printf("find %s, at %s %n",s,f.getAbsolutePath());
+				}
+			}
+		}
+		if(f.isDirectory()) {
+			for(File ff: f.listFiles()) {
+				search(ff,s);
+			}
+		}
+	}
+
+//此方法无法搜索中文, 因为FileRead 默认用GBK , 无法解码notepad 的utf-8
+/*	public static String readFile(File f) {
+		char[] cs = new char[(int)f.length()];
+		try(FileReader fr = new FileReader(f)) {
+			fr.read(cs);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return new String(cs);
+	}*/
+
+	public static String readFile(File f) {
+		char [] bs = new char[(int)f.length()];
+		try( 
+				FileInputStream fs = new FileInputStream(f);
+				InputStreamReader isr = new InputStreamReader(fs, Charset.forName("utf-8"));
+		){
+			isr.read(bs);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return new String(bs);
+	}
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		copyFile("c:/lianxi/copy.txt", "c:/lianxi/copy2.txt");
+//		copyFile("c:/lianxi/copy.txt", "c:/lianxi/copy2.txt");
+//		copyDir("c:/lianxi/", "c:/lianxi2/");
+		File j = new File("c:/lianxi");
+		search(j,"中文");
 	}
 
 }
