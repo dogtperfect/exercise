@@ -41,6 +41,7 @@ public class TestConn {
 //sql 注入
 			String na = " 'bala' or 1=1";
 			String sle = "select * from hero where name = " + na;
+// s.executeQuery 直接返回 ResultSet, s.execute 还需要 s.getResultSet(), 才能返回ResultSet 			
 			ResultSet rs = s.executeQuery(sle);
 			while(rs.next()) {
 				int id = rs.getInt("id");
