@@ -1,13 +1,14 @@
 package me.xunmi.jdbc;
 
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.mysql.cj.jdbc.DatabaseMetaData;
+//import com.mysql.cj.jdbc.DatabaseMetaData;
 
 public class ExecuteUpdate {
 	public static void testUpdate() {
