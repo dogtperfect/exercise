@@ -4,12 +4,14 @@ import java.io.Serializable;
 
 public class Hero implements Serializable{
 	private static final long serialVersionUid = 1L;
+	public int id;
 	public String name;
+	public String skill;
 	public float hp;
-	Hero(String name){
+	public Hero(String name){
 		this.name = name;
 	}
-	Hero(){
+	public Hero(){
 		
 	}
 }
