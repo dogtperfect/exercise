@@ -1,6 +1,6 @@
 package me.xunmi.collection;
 
-public class Hero {
+public class Hero implements Lol {
 	public String name;
 	public float hp;
 	public int damage;
