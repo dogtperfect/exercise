@@ -1,4 +1,6 @@
 package com.dogtperfect.numandstr;
+import java.util.HashSet;
+
 import numberandstring.typebox;
 
 public class raoKouLing {
@@ -56,6 +58,8 @@ public class raoKouLing {
 		System.out.println(str1.startsWith(start));
 		System.out.println(str1.endsWith(end));*/
 		
+		HashSet<String> duplicate = new HashSet<>();
+		
 		String[] ss = new  String[100];
 		for (int i = 0; i< ss.length; i++) {
 			ss[i] = typebox.randomString(2);
@@ -72,24 +76,29 @@ public class raoKouLing {
 				if (s1.equalsIgnoreCase(s2)) {
 					repeat++;
 					if (repeat == 2) {
-						putIntoDuplicateArray(s1);
+						duplicate.add(s1.toLowerCase());
+//						putIntoDuplicateArray(s1);
 						break;
 					}
 				}
 			}
 		}
-		System.out.printf("总共有%d 种重复的字符串  %n", pos);
+		
+		System.out.printf("总共有%d 种重复的字符串  %n", duplicate.size());
+		System.out.println(duplicate);
+		/*System.out.printf("总共有%d 种重复的字符串  %n", pos);
 		if (pos!=0) {
 			for (int i = 0; i < pos; i++) {
 				System.out.println(foundDuplicated[i]+" ");
 			}
-		}
+		}*/
 		
 	}
 	
 	static int pos;
 	static String[] foundDuplicated = new String[100];
 	
+// 精妙	
 	public static void putIntoDuplicateArray (String s) {
 		for (int i = 0; i < pos; i++) {
 			if (foundDuplicated[i].equalsIgnoreCase(s)) {
@@ -130,8 +139,8 @@ public class raoKouLing {
 		// TODO Auto-generated method stub
 		
 //		raoKouLing();
-		jianGe();
-//		bijiao();
+//		jianGe();
+		bijiao();
 //		testString();
 	}
 
